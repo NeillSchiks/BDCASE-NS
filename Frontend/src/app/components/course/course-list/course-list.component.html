@@ -1,0 +1,19 @@
+<div>
+    <h1>Courses in Database</h1>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">title</th>
+                <th scope="col">code</th>
+                <th scope="col">duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses" class="table-light">
+                <td>{{ course.title }}</td>
+                <td>{{ course.code }}</td>
+                <td>{{ course.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
