@@ -1,8 +1,8 @@
 <div>
     <h4>Courses toevoegen</h4>
-    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
-        <div class="file-upload">
-            {{fileName || "Geen bestand geselecteerd."}}
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">Invoeren</button>
-        </div>
+    <form [formGroup]="addCourseForm" (ngSubmit)="uploadFile($event)">
+    <label for="input-file" class="form-label">Input file: </label>
+    <input class="form-control" id="input-file" type="file" formControlName="file" (change)="onFileChange($event)"/>
+    <button class="btn btn-primary" id="submitAddcourseForm" [disabled]="!addCourseForm.valid" type="submit">Invoeren</button>
+    </form>
 </div>

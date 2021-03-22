@@ -9,26 +9,35 @@ import { CourseinstanceService } from 'src/app/services/courseinstance.service';
   styleUrls: ['./course-add.component.css']
 })
 export class CourseAddComponent {
-  fileName = '';
 
-    constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
-    onFileSelected(event) {
+  addCourseForm = new FormGroup({
+    file: new FormControl(undefined, Validators.required),
+  });
 
-        const file:File = event.target.files[0];
+  uploadFile($event){
+    this.readThis($event.target);
+  }
 
-        if (file) {
+  onFileChange($event): void {
+    this.readThis($event.target);
+  }
 
-            this.fileName = file.name;
+  readThis(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+    var fileType = inputValue.parentElement.id;
+    myReader.onloadend = function (e) {
+        //myReader.result is a String of the uploaded file
+        console.log(myReader.result);
 
-            const formData = new FormData();
-
-            formData.append("thumbnail", file);
-            console.log(formData)
-
-            const upload$ = this.httpClient.post("/api/thumbnail-upload", formData);
-
-            upload$.subscribe();
-        }
+        //fileString = myReader.result would not work, 
+        //because it is not in the scope of the callback
     }
+    
+    myReader.readAsText(file);
+  }
 }
+
+
