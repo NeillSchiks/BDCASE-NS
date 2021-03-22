@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Eindcase\\Project\\CASE-NS\\Backend\\Backend.csproj": {}
+    "C:\\Users\\schin03\\Source\\Repos\\NeillSchiks\\BDCASE-NS\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Eindcase\\Project\\CASE-NS\\Backend\\Backend.csproj": {
+    "C:\\Users\\schin03\\Source\\Repos\\NeillSchiks\\BDCASE-NS\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Eindcase\\Project\\CASE-NS\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\schin03\\Source\\Repos\\NeillSchiks\\BDCASE-NS\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Eindcase\\Project\\CASE-NS\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\schin03\\Source\\Repos\\NeillSchiks\\BDCASE-NS\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\schin03\\.nuget\\packages\\",
-        "outputPath": "C:\\Eindcase\\Project\\CASE-NS\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\schin03\\Source\\Repos\\NeillSchiks\\BDCASE-NS\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
