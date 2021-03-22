@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Eindcase\\Project\\Backend\\Backend\\Backend.csproj": {}
+    "C:\\Users\\schin03\\Source\\Repos\\CASE-NS\\Backend\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Eindcase\\Project\\Backend\\Backend\\Backend.csproj": {
+    "C:\\Users\\schin03\\Source\\Repos\\CASE-NS\\Backend\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Eindcase\\Project\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\schin03\\Source\\Repos\\CASE-NS\\Backend\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Eindcase\\Project\\Backend\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\wp_schin03\\.nuget\\packages\\",
-        "outputPath": "C:\\Eindcase\\Project\\Backend\\Backend\\obj\\",
+        "projectPath": "C:\\Users\\schin03\\Source\\Repos\\CASE-NS\\Backend\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\schin03\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\schin03\\Source\\Repos\\CASE-NS\\Backend\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\wp_schin03\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\schin03\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -43,6 +43,32 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
