@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const appRoutes: Routes = [
   {path: 'courses', component: CourseListComponent},
   {path: 'courseinstances', component: CourseinstanceListComponent},
+  {path: 'courseadd', component: CourseAddComponent},
 ]
 
 @NgModule({

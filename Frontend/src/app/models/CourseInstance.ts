@@ -1,7 +1,7 @@
 import { Course } from "./Course";
 
 export interface CourseInstance {
-    id: number;
-    startdate: Date;
+    id?: number;
+    startDate: Date;
     course: Course;
 }

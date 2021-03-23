@@ -19,6 +19,12 @@ namespace Backend.Repositories
 
         public async Task CreateCourseInstanceAsync(CourseInstance course)
         {
+            //var result = context.Courses.Find(course.Course.Code);
+            //if (result == null)
+            //{
+            //    context.Courses.Add(course.Course);
+            //}
+            //course.Course = context.Courses.SingleOrDefault(x => x.Code == course.Course.Code);
             context.CourseInstances.Add(course);
             await context.SaveChangesAsync();
         }

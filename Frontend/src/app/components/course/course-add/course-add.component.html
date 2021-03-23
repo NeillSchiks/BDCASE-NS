@@ -1,8 +1,28 @@
 <div>
-    <h4>Courses toevoegen</h4>
-    <form [formGroup]="addCourseForm" (ngSubmit)="uploadFile($event)">
+    <h4>Cursus toevoegen</h4>
     <label for="input-file" class="form-label">Input file: </label>
-    <input class="form-control" id="input-file" type="file" formControlName="file" (change)="onFileChange($event)"/>
-    <button class="btn btn-primary" id="submitAddcourseForm" [disabled]="!addCourseForm.valid" type="submit">Invoeren</button>
-    </form>
+    <input type="file" (change)="onFileChange($event)"/>
+</div>
+<hr>
+<div>
+    <h4>Data</h4>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">date</th>
+                <th scope="col">title</th>
+                <th scope="col">code</th>
+                <th scope="col">duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of data" class="table-light">
+                <td>{{ course.startDate | date : 'd/M/y' }}</td>
+                <td>{{ course.course.title }}</td>
+                <td>{{ course.course.code }}</td>
+                <td>{{ course.course.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button [disabled]="data == null" class="btn btn-success" (click)="upload()">Cursussen invoeren</button>
 </div>

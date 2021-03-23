@@ -21,13 +21,8 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Course", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Duration")
                         .HasColumnType("nvarchar(max)");
@@ -35,7 +30,7 @@ namespace Backend.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
                     b.ToTable("Courses");
                 });
@@ -47,15 +42,15 @@ namespace Backend.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
+                    b.Property<string>("CourseCode")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                    b.HasIndex("CourseCode");
 
                     b.ToTable("CourseInstances");
                 });
@@ -63,10 +58,15 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.CourseInstance", b =>
                 {
                     b.HasOne("Backend.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId");
+                        .WithMany("CourseInstances")
+                        .HasForeignKey("CourseCode");
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Backend.Models.Course", b =>
+                {
+                    b.Navigation("CourseInstances");
                 });
 #pragma warning restore 612, 618
         }

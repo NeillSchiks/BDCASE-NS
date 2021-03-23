@@ -9,9 +9,7 @@ namespace Backend.Models
     public class CourseInstance
     {
         public int Id { get; set; }
-
         public DateTime StartDate { get; set; }
-
         public Course Course { get; set; }
     }
 }
