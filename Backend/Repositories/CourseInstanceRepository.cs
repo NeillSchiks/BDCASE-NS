@@ -19,14 +19,28 @@ namespace Backend.Repositories
 
         public async Task CreateCourseInstanceAsync(CourseInstance course)
         {
-            //var result = context.Courses.Find(course.Course.Code);
-            //if (result == null)
-            //{
-            //    context.Courses.Add(course.Course);
-            //}
-            //course.Course = context.Courses.SingleOrDefault(x => x.Code == course.Course.Code);
-            context.CourseInstances.Add(course);
-            await context.SaveChangesAsync();
+            var result = context.Courses.Find(course.Course.Code);
+            if (result == null)
+            {
+                context.CourseInstances.Add(course);
+                await context.SaveChangesAsync();
+            }
+            else
+            {
+                CourseInstance courseInstance = new CourseInstance()
+                {
+                    StartDate = course.StartDate,
+                    CourseCode = course.Course.Code
+                };
+                var duplicate = context.CourseInstances.Where(x =>( x.StartDate == courseInstance.StartDate && x.CourseCode == courseInstance.CourseCode)).FirstOrDefault();
+                if(duplicate == null)
+                {
+                    context.CourseInstances.Add(courseInstance);
+                    await context.SaveChangesAsync();
+                }
+                
+            }
+            
         }
 
         public async Task<CourseInstance> GetCourseInstanceByIdAsync(int id)

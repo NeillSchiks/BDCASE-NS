@@ -10,6 +10,8 @@ namespace Backend.Models
     {
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
+
+        public string CourseCode { get; set; }
         public Course Course { get; set; }
     }
 }
