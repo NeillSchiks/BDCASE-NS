@@ -19,11 +19,11 @@ export class CourseAddComponent {
   upload(){
     for(let i = 0; i < this.data.length; i++)
     {
-      this.courseinstanceService
-      .add(this.data[i])
-      .subscribe((course) => {
-        console.log(course);
-      });
+        this.courseinstanceService
+          .add(this.data[i])
+          .subscribe((course) => {
+            console.log(course);
+          });
     }
   }
 

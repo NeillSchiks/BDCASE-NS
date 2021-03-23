@@ -22,7 +22,7 @@ namespace Backend.Repositories
             var result = context.Courses.Find(course.Course.Code);
             if (result == null)
             {
-                context.CourseInstances.Add(course);
+                await context.CourseInstances.AddAsync(course);
                 await context.SaveChangesAsync();
             }
             else
@@ -35,7 +35,7 @@ namespace Backend.Repositories
                 var duplicate = context.CourseInstances.Where(x =>( x.StartDate == courseInstance.StartDate && x.CourseCode == courseInstance.CourseCode)).FirstOrDefault();
                 if(duplicate == null)
                 {
-                    context.CourseInstances.Add(courseInstance);
+                    await context.CourseInstances.AddAsync(courseInstance);
                     await context.SaveChangesAsync();
                 }
                 

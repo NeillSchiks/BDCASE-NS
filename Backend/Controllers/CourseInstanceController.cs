@@ -14,12 +14,10 @@ namespace Backend.Controllers
     public class CourseInstanceController : ControllerBase
     {
         private readonly ICourseInstanceRepository courseInstanceRepository;
-        private readonly ICourseRepository courseRepository;
 
-        public CourseInstanceController(ICourseInstanceRepository courseInstanceRepository, ICourseRepository courseRepository)
+        public CourseInstanceController(ICourseInstanceRepository courseInstanceRepository)
         {
             this.courseInstanceRepository = courseInstanceRepository;
-            this.courseRepository = courseRepository;
         }
 
         [HttpGet]
