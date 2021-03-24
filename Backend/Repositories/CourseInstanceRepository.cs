@@ -17,30 +17,47 @@ namespace Backend.Repositories
             this.context = context;
         }
 
-        public async Task CreateCourseInstanceAsync(CourseInstance course)
+        public async Task<ViewModelCourse> CreateCourseInstanceAsync(CourseInstance[] course)
         {
-            var result = context.Courses.Find(course.Course.Code);
-            if (result == null)
+            ViewModelCourse viewModel = new ViewModelCourse()
             {
-                await context.CourseInstances.AddAsync(course);
-                await context.SaveChangesAsync();
-            }
-            else
+                CoursesAdded = 0,
+                CourseInstancesAdded = 0,
+                CourseInstanceDuplicates = 0,
+            };
+
+            foreach(var item in course)
             {
-                CourseInstance courseInstance = new CourseInstance()
+                var result = await context.Courses.FindAsync(item.Course.Code);
+                if (result == null)
                 {
-                    StartDate = course.StartDate,
-                    CourseCode = course.Course.Code
-                };
-                var duplicate = context.CourseInstances.Where(x =>( x.StartDate == courseInstance.StartDate && x.CourseCode == courseInstance.CourseCode)).FirstOrDefault();
-                if(duplicate == null)
-                {
-                    await context.CourseInstances.AddAsync(courseInstance);
+                    await context.CourseInstances.AddAsync(item);
                     await context.SaveChangesAsync();
+                    viewModel.CoursesAdded++;
+                    viewModel.CourseInstancesAdded++;
                 }
-                
+                else
+                {
+                    CourseInstance courseInstance = new CourseInstance()
+                    {
+                        StartDate = item.StartDate,
+                        CourseCode = item.Course.Code
+                    };
+                    var duplicate = context.CourseInstances.Where(x => (x.StartDate == courseInstance.StartDate && x.CourseCode == courseInstance.CourseCode)).FirstOrDefault();
+                    if (duplicate == null)
+                    {
+                        await context.CourseInstances.AddAsync(courseInstance);
+                        await context.SaveChangesAsync();
+                        viewModel.CourseInstancesAdded++;
+                    }
+                    else
+                    {
+                        viewModel.CourseInstanceDuplicates++;
+                    }
+                }
             }
-            
+
+            return viewModel;
         }
 
         public async Task<CourseInstance> GetCourseInstanceByIdAsync(int id)
@@ -52,7 +69,7 @@ namespace Backend.Repositories
 
         public async Task<List<CourseInstance>> GetCourseInstancesAsync()
         {
-            return await context.CourseInstances.Include(a => a.Course).ToListAsync();
+            return await context.CourseInstances.Include(a => a.Course).OrderBy(x => x.StartDate).ToListAsync();
         }
 
         public async Task UpdateCourseInstanceAsync(CourseInstance course)

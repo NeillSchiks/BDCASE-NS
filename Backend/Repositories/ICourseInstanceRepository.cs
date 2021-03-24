@@ -10,7 +10,7 @@ namespace Backend.Repositories
     {
         Task<List<CourseInstance>> GetCourseInstancesAsync();
         Task<CourseInstance> GetCourseInstanceByIdAsync(int id);
-        Task CreateCourseInstanceAsync(CourseInstance course);
+        Task<ViewModelCourse> CreateCourseInstanceAsync(CourseInstance[] course);
         Task UpdateCourseInstanceAsync(CourseInstance course);
         Task DeleteCourseInstanceAsync(CourseInstance course);
     }

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CourseinstanceService } from './courseinstance.service';
 
-describe('CourseinstanceService', () => {
+describe('CourseInstance Service: Dependency Injection', () => {
   let service: CourseinstanceService;
 
   beforeEach(() => {

@@ -15,7 +15,7 @@ export class CourseinstanceService {
     return this.httpClient.get<CourseInstance[]>(this.url);
   }
 
-  add(course: CourseInstance): Observable<CourseInstance> {
-    return this.httpClient.post<CourseInstance>(this.url, course);
+  add(course: CourseInstance[]): Observable<Object> {
+    return this.httpClient.post<CourseInstance[]>(this.url, course);
   } 
 }

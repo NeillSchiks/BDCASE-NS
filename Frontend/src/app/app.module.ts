@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CourseListComponent } from './components/course/course-list/course-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,7 +12,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
-  {path: 'courses', component: CourseListComponent},
   {path: 'courseinstances', component: CourseinstanceListComponent},
   {path: 'courseadd', component: CourseAddComponent},
 ]
@@ -21,7 +19,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CourseListComponent,
     CourseinstanceListComponent,
     CourseAddComponent
   ],

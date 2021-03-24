@@ -27,33 +27,33 @@ namespace Backend.Controllers
             return await courseInstanceRepository.GetCourseInstancesAsync();
         }
 
-        [HttpGet]
-        [Route("{id:int}")]
-        public async Task<ActionResult<CourseInstance>> GetCourseInstance(int id)
-        {
-            return await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
-        }
+        //[HttpGet]
+        //[Route("{id:int}")]
+        //public async Task<ActionResult<CourseInstance>> GetCourseInstance(int id)
+        //{
+        //    return await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
+        //}
 
         [HttpPost]
         [Route("")]
-        public async Task CreateCourseInstance(CourseInstance courseInstance)
+        public async Task<ActionResult<ViewModelCourse>> CreateCourseInstance(CourseInstance[] courseInstance)
         {
-            await courseInstanceRepository.CreateCourseInstanceAsync(courseInstance);
+            return await courseInstanceRepository.CreateCourseInstanceAsync(courseInstance);
         }
 
-        [HttpPut]
-        [Route("")]
-        public async Task UpdateCourseInstance(CourseInstance courseInstance)
-        {
-            await courseInstanceRepository.UpdateCourseInstanceAsync(courseInstance);
-        }
+        //[HttpPut]
+        //[Route("")]
+        //public async Task UpdateCourseInstance(CourseInstance courseInstance)
+        //{
+        //    await courseInstanceRepository.UpdateCourseInstanceAsync(courseInstance);
+        //}
 
-        [HttpDelete]
-        [Route("")]
-        public async Task DeleteCourseInstance(int id)
-        {
-            var courseInstance = await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
-            await courseInstanceRepository.DeleteCourseInstanceAsync(courseInstance);
-        }
+        //[HttpDelete]
+        //[Route("")]
+        //public async Task DeleteCourseInstance(int id)
+        //{
+        //    var courseInstance = await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
+        //    await courseInstanceRepository.DeleteCourseInstanceAsync(courseInstance);
+        //}
     }
 }
