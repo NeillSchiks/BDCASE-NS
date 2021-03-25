@@ -1,0 +1,43 @@
+<div>
+    <h4>Cursus toevoegen</h4>
+    <form [formGroup]="addCourseForm" (ngSubmit)="upload()">
+        <div class="form-group">
+            <label for="input-file" class="form-label">Input file:</label><br>
+            <input class="form-control" id="input-file" formControlName="file" type="file" (change)="uploadFiles($event)"/>
+        </div>
+        <button [disabled]="!addCourseForm.valid || errorMessage !== null" class="btn btn-success" (click)="upload()">Cursussen invoeren</button>
+    </form>
+</div>
+<hr>
+<div *ngIf="errorMessage">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{errorMessage}}</strong>
+    </div>
+</div>
+<div *ngIf="viewModel">
+    <div class="alert alert-info" role="alert">
+        Er zijn <strong>{{viewModel.courseInstancesAdded}}</strong> nieuwe cursus instanties toegevoegd. 
+        Er zijn <strong>{{viewModel.courseInstanceDuplicates}}</strong> duplicaten gevonden.
+    </div>
+</div>
+<div>
+    <h4>Data</h4>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">date</th>
+                <th scope="col">title</th>
+                <th scope="col">code</th>
+                <th scope="col">duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of data" class="table-light">
+                <td>{{ course.startDate | date : 'd/M/y' }}</td>
+                <td>{{ course.course.title }}</td>
+                <td>{{ course.course.code }}</td>
+                <td>{{ course.course.duration }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

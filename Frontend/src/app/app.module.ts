@@ -10,17 +10,20 @@ import { CourseAddComponent } from './components/course/course-add/course-add.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UploadFileComponent } from './components/course/upload-file/upload-file.component';
 
 const appRoutes: Routes = [
   {path: 'courseinstances', component: CourseinstanceListComponent},
   {path: 'courseadd', component: CourseAddComponent},
+  {path: 'uploadfile', component: UploadFileComponent},
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseinstanceListComponent,
-    CourseAddComponent
+    CourseAddComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
