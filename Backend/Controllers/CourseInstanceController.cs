@@ -27,12 +27,7 @@ namespace Backend.Controllers
             return await courseInstanceRepository.GetCourseInstancesAsync();
         }
 
-        //[HttpGet]
-        //[Route("{id:int}")]
-        //public async Task<ActionResult<CourseInstance>> GetCourseInstance(int id)
-        //{
-        //    return await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
-        //}
+        
 
         [HttpPost]
         [Route("")]
@@ -40,6 +35,13 @@ namespace Backend.Controllers
         {
             return await courseInstanceRepository.CreateCourseInstanceAsync(courseInstance);
         }
+
+        //[HttpGet]
+        //[Route("{id:int}")]
+        //public async Task<ActionResult<CourseInstance>> GetCourseInstance(int id)
+        //{
+        //    return await courseInstanceRepository.GetCourseInstanceByIdAsync(id);
+        //}
 
         //[HttpPut]
         //[Route("")]

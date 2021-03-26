@@ -5,10 +5,6 @@ import { ErrorModel } from 'src/app/models/ErrorModel';
 import { CourseinstanceService } from 'src/app/services/courseinstance.service';
 import { ReadFileService } from 'src/app/services/read-file.service';
 
-const INVALID_FILE = ' Invalid file.';
-const INVALID_IMAGE = ' Invalid image.';
-const INVALID_SIZE = ' Invalid Size.';
-
 @Component({
   selector: 'upload-file',
   templateUrl: './upload-file.component.html',

@@ -32,7 +32,6 @@ namespace Backend
             {
                 options.UseSqlServer(Configuration.GetConnectionString("BackendDbContext"));
             });
-            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ICourseInstanceRepository, CourseInstanceRepository>();
             services.AddCors(options =>
             {
@@ -40,7 +39,7 @@ namespace Backend
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:4200",
-                                            "http://localhost:4200/courseadd");
+                                            "http://localhost:4200/uploadfile");
                         builder.AllowAnyHeader();
                     });
             });
