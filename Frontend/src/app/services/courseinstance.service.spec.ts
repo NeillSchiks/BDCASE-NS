@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { CourseinstanceService } from './courseinstance.service';
 
 describe('CourseInstance Service: Dependency Injection', () => {

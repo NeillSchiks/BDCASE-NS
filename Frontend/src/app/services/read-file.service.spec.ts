@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { CourseInstance } from '../models/CourseInstance';
+import { ErrorModel } from '../models/ErrorModel';
 
 import { ReadFileService } from './read-file.service';
 
@@ -15,7 +17,7 @@ describe('ReadFile Service: Dependency Injection', () => {
   });
 });
 
-fdescribe('Service: ReadFileService', () => {
+describe('Service: ReadFileService', () => {
   let sut: ReadFileService;
 
   beforeEach(() => {
@@ -41,37 +43,65 @@ fdescribe('Service: ReadFileService', () => {
     expect(array[1].length).toBe(4);
   });
 
-  
-
   it('should return error when data types of course instance are in wrong order', () =>{
     const content: any[] = [['Titel: c#', 'Duur: 5 dagen', 'Cursuscode: CS', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Cursuscode: BLZ', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
-    let check: string = sut.checkOrder(content);
-    expect(check).toBe('Volgorde van data klopt niet, controleer het bestand');
+    let check: ErrorModel = sut.checkOrder(content);
+    expect(check.bool).toBe(false);
   });
   
   it('should return true when data types of course instance are in right order', () =>{
     const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Cursuscode: BLZ', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
-    let check: string = sut.checkOrder(content);
-    expect(check).toBe('true');
+    let check: ErrorModel = sut.checkOrder(content);
+    expect(check.bool).toBe(true);
   });
 
   it('should check if all objects contains an array with four objects', () => {
     const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Cursuscode: BLZ', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
-    let check: string = sut.checkRows(content);
-    expect(check).toBe('true');
+    let check: ErrorModel = sut.checkRows(content);
+    expect(check.bool).toBe(true);
   });
 
   it('should return false when object in array contains less than 4 objects', () => {
     const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
-    let check: string = sut.checkRows(content);
-    expect(check).toBe('Het aantal rijen per cursus instantie klopt niet, controleer het bestand');
+    let check: ErrorModel = sut.checkRows(content);
+    expect(check.bool).toBe(false);
+    expect(check.row).toBe(9);
   });
 
   it('should return false when object in array contains more than 4 objects', () => {
     const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Cursuscode: CS', 'Cursuscode: CS', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
-    let check: string = sut.checkRows(content);
-    expect(check).toBe('Het aantal rijen per cursus instantie klopt niet, controleer het bestand');
+    let check: ErrorModel = sut.checkRows(content);
+    expect(check.bool).toBe(false);
   });
 
+  it('should return array of two course instances', () => {
+    const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24'], ['Titel: Blazor', 'Cursuscode: CS', 'Cursuscode: CS', 'Duur: 2 dagen', 'Startdatum: 2021/03/21']];
+    let check: CourseInstance[] = sut.assignCourseInstances(content);
+    expect(check.length).toBe(2);
+  });
+
+  it('should return true when date annotation is right', () => {
+    const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24']];
+    let check: ErrorModel = sut.checkDate(content);
+    expect(check.bool).toBe(true);
+  });
+
+  it('should return false when date annotation is wrong', () => {
+    const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021-03-24']];
+    let check: ErrorModel = sut.checkDate(content);
+    expect(check.bool).toBe(false);
+  });
+
+  it('should return true when duration annotation is right', () => {
+    const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5 dagen', 'Startdatum: 2021/03/24']];
+    let check: ErrorModel = sut.checkDuration(content);
+    expect(check.bool).toBe(true);
+  });
+
+  it('should return false when duration annotation is wrong', () => {
+    const content: any[] = [['Titel: c#', 'Cursuscode: CS', 'Duur: 5', 'Startdatum: 2021/03/24']];
+    let check: ErrorModel = sut.checkDuration(content);
+    expect(check.bool).toBe(false);
+  });
   
 });

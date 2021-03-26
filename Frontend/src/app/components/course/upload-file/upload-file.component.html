@@ -3,19 +3,20 @@
     <form [formGroup]="addCourseForm" (ngSubmit)="upload()">
         <div class="form-group">
             <label for="input-file" class="form-label">Input file:</label><br>
-            <input class="form-control" id="input-file" formControlName="file" type="file" (change)="uploadFiles($event)"/>
+            <input id="input-file" class="form-control"  formControlName="file" type="file" (change)="uploadFiles($event)"/>
         </div>
-        <button [disabled]="!addCourseForm.valid || errorMessage !== null" class="btn btn-success" (click)="upload()">Cursussen invoeren</button>
+        <button id="input-upload" [disabled]="!addCourseForm.valid || errorMessage !== null" class="btn btn-success" (click)="upload()">Cursussen invoeren</button>
     </form>
 </div>
 <hr>
 <div *ngIf="errorMessage">
     <div class="alert alert-danger" role="alert">
-        <strong>{{errorMessage}}</strong>
+        <strong>{{errorMessage.message}}</strong><br>
+        <strong>Fout in bestand op regel: {{errorMessage.row}}</strong>
     </div>
 </div>
-<div *ngIf="viewModel">
-    <div class="alert alert-info" role="alert">
+<div *ngIf="viewModel && errorMessage === null">
+    <div id="Viewmodel-aanwezig" class="alert alert-info" role="alert">
         Er zijn <strong>{{viewModel.courseInstancesAdded}}</strong> nieuwe cursus instanties toegevoegd. 
         Er zijn <strong>{{viewModel.courseInstanceDuplicates}}</strong> duplicaten gevonden.
     </div>

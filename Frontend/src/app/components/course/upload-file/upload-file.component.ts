@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { from, Observable, Observer } from 'rxjs';
+import { ErrorModel } from 'src/app/models/ErrorModel';
 import { CourseinstanceService } from 'src/app/services/courseinstance.service';
 import { ReadFileService } from 'src/app/services/read-file.service';
 
@@ -15,7 +16,7 @@ const INVALID_SIZE = ' Invalid Size.';
 })
 export class UploadFileComponent implements OnInit {
   data: any[];
-  errorMessage;
+  errorMessage: ErrorModel;
   viewModel;
 
   constructor(private readFileService: ReadFileService, private courseinstanceService: CourseinstanceService) { }
@@ -28,6 +29,7 @@ export class UploadFileComponent implements OnInit {
   }
 
   uploadFiles($event): void {
+    this.viewModel = null;
     this.data = null;
     this.errorMessage = null;
     this.readFileService.readFile($event.target).subscribe({
@@ -40,7 +42,6 @@ export class UploadFileComponent implements OnInit {
     this.courseinstanceService
       .add(this.data)
       .subscribe((course) => {
-        console.log(course);
         this.viewModel = course;
       }); 
     this.addCourseForm.reset();

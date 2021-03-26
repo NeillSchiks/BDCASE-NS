@@ -1,25 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CourseinstanceService } from 'src/app/services/courseinstance.service';
 
 import { CourseinstanceListComponent } from './courseinstance-list.component';
 
-describe('CourseinstanceListComponent', () => {
-  let component: CourseinstanceListComponent;
-  let fixture: ComponentFixture<CourseinstanceListComponent>;
+class MockCourseInstanceService {
+  getAll() {}
+  add() {}
+}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CourseinstanceListComponent ]
-    })
-    .compileComponents();
-  });
+describe('CourseinstanceListComponent', () => {
+  let sut: CourseinstanceListComponent;
+  let mockCourseinstanceService: CourseinstanceService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CourseinstanceListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ CourseinstanceListComponent],
+      imports: [],
+      providers: [ { provide: CourseinstanceService, useClass: MockCourseInstanceService}],
+    });
+
+    sut = TestBed.createComponent(CourseinstanceListComponent).componentInstance;
+    mockCourseinstanceService = TestBed.inject(CourseinstanceService);
+    spyOn(mockCourseinstanceService, 'getAll');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should get all course instances', () => {
+    sut.ngOnInit();
+    expect(mockCourseinstanceService.getAll()).toHaveBeenCalled();
+  })
+
+  
 });

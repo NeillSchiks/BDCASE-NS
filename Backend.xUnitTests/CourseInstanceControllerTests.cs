@@ -56,7 +56,7 @@ namespace Backend.xUnitTests
         public void CreateCourseInstance_new_instance_and_new_course_should_add_new_instance_and_new_course()
         {
             //Arrange
-            ViewModelCourse viewModel = new ViewModelCourse() { CoursesAdded = 1, CourseInstancesAdded = 1 };
+            ViewModelCourse viewModel = new ViewModelCourse() { CoursesAdded = 1, CourseInstancesAdded = 1, CourseInstanceDuplicates = 0 };
             CourseInstance[] courseAngular = new CourseInstance[] { new CourseInstance { StartDate = DateTime.Parse("2021-04-23"), Course = new Course { Title = "Angular", Duration = "4 dagen", Code = "ANGU" } } };
 
             mockCourseInstanceRepo.Setup(repo => repo.CreateCourseInstanceAsync(It.IsAny<CourseInstance[]>()))
@@ -70,13 +70,14 @@ namespace Backend.xUnitTests
             Assert.IsType<ActionResult<ViewModelCourse>>(result.Result);
             Assert.Equal(1, result.Result.Value.CoursesAdded);
             Assert.Equal(1, result.Result.Value.CourseInstancesAdded);
+            Assert.Equal(0, result.Result.Value.CourseInstanceDuplicates);
         }
 
         [Fact]
         public void CreateCourseInstance_should_create_only_new_instance()
         {
             //Arrange
-            ViewModelCourse viewModel = new ViewModelCourse() { CoursesAdded = 0, CourseInstancesAdded = 1 };
+            ViewModelCourse viewModel = new ViewModelCourse() { CoursesAdded = 0, CourseInstancesAdded = 1, CourseInstanceDuplicates = 3 };
             CourseInstance[] courseBlazor = new CourseInstance[] { new CourseInstance { StartDate = DateTime.Parse("2021-04-15"), Course = new Course { Title = "Blazor", Duration = "4 dagen", Code = "BLZ" } } };
 
             mockCourseInstanceRepo.Setup(repo => repo.CreateCourseInstanceAsync(It.IsAny<CourseInstance[]>()))
@@ -90,6 +91,7 @@ namespace Backend.xUnitTests
             Assert.IsType<ActionResult<ViewModelCourse>>(result.Result);
             Assert.Equal(0, result.Result.Value.CoursesAdded);
             Assert.Equal(1, result.Result.Value.CourseInstancesAdded);
+            Assert.Equal(3, result.Result.Value.CourseInstanceDuplicates);
         }
     }
 }
