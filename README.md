@@ -1,8 +1,7 @@
 Server
 - Open backend folder in visual studio
-- Voer command uit in Package Manager Console: Add-Migration InitialCreate
 - Voer command uit in Package Manager Console: Update-Database
-- Start IIS Express
+- Start IIS Express(f5)
 
 Client
 - Open frontend folder in visual studio code
